@@ -23,13 +23,10 @@ best <- function(state, outcome) {
     warning("invalid outcome")
   }
   outcomeColumnName <- as.character(inputMapping[inputMapping$input==outcome,][,"column"])
-  outcomeMeasures<-outcomeMeasures[order(eval(outcomeColumnName),Hospital.Name),]
-  #minIndex <- which.min(outcomeMeasures[,outcomeColumnName],na.rm=TRUE)
-  #outcomeMeasures[minIndex,"Hospital.Name"]
-  minDeath <- min(outcomeMeasures[,outcomeColumnName], na.rm=TRUE)
-  minimumVector<-outcomeMeasures[,outcomeColumnName] == minDeath
-  outcomeMeasures[minimumVector==TRUE,]
-  outcomeMeasures[minimumVector,]
+  outcomeMeasures <- outcomeMeasures[outcomeMeasures$State == state,]
+  outcomeMeasures <- outcomeMeasures[order(eval(outcomeColumnName),"Hospital.Name"),]
+  minDeathHospital <- outcomeMeasures[1,"Hospital.Name"]
   
+  return(minDeathHospital)
 }
 
