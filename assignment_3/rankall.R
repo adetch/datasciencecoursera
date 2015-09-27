@@ -71,6 +71,7 @@ nHospitals<-function(state, stateData) {
 
 # Accepts a state argument, list of dataframes by state, num index
 # Returns the hospital for the specified state with the numth lowest death rate
+# or NA if there the state doesn't have a hospital record at the numth index
 nDeathHospital<-function(state, stateData, num) {
   nthDeathHospital <- tryCatch(
     {
